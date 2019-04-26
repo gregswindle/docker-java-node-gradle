@@ -5,7 +5,11 @@ ENV NODE_VERSION 8.12.0
 ENV GRADLE_VERSION 4.10.2
 
 RUN apt-get update
-RUN apt-get -y install openjdk-8-jdk wget curl unzip xz-utils python build-essential ssh git
+RUN apt-get -y install openjdk-8-jdk wget curl unzip xz-utils python build-essential ssh git locales
+
+# Configure locale to UTF-8
+RUN locale-gen en_US.UTF-8
+ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
 # Setup certificates in openjdk-8
 RUN /var/lib/dpkg/info/ca-certificates-java.postinst configure
